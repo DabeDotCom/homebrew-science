@@ -57,6 +57,12 @@ class Opencv < Formula
   # in Homebrew anyway. Will depend on openexr if it's installed.
   depends_on "ffmpeg" => :optional
 
+  # Workaround for https://github.com/opencv/opencv/issues/7606
+  patch do
+    url "https://github.com/DabeDotCom/opencv/commit/6292fb62682f94a7efd7979401d41d278cac1262.diff"
+    sha256 "1df24d5ee16f6b9c0364d7aa8a125236c3b4feef911648ad37690d2654a5fb93"
+  end
+
   def arg_switch(opt)
     (build.with? opt) ? "ON" : "OFF"
   end
